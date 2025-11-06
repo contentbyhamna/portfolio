@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Hamna - Expert SEO Content Writer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Twemoji -->
+    <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==================== CSS VARIABLES ==================== */
+        :root {
+            --cream: #FBF8F3;
+            --ink: #1A1A1A;
+            --peach: #FF9B71;
+            --forest: #1B4D3E;
+            --sage: #A8B5A1;
+            --warm-gray: #6B6B6B;
+            --peach-fade: rgba(255, 155, 113, 0.3);
+            --peach-glow: rgba(255, 155, 113, 0.6);
+            
+            --font-display: 'DM Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        /* ==================== RESET ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        ::selection {
+            background: var(--peach-fade);
+            color: var(--ink);
+        }
+
+        /* ==================== EMOJI STYLING ==================== */
+        .twemoji {
+            display: inline-block;
+            height: 1.2em;
+            width: 1.2em;
+            vertical-align: -0.2em;
+        }
+
+        /* ==================== CUSTOM CURSOR ==================== */
+        .custom-cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--peach);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor.hover {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid var(--peach);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--peach-glow);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fadeTrail 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeTrail {
+            to {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        /* ==================== FLOATING NAVIGATION WITH GLASSMORPHISM ==================== */
+        .floating-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            animation: navFadeIn 0.6s ease forwards 3s;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 1.5rem 0.75rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes navFadeIn {
+            to { opacity: 1; }
+        }
+
+        .nav-item {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: none;
+            transition: var(--transition-smooth);
+            color: var(--ink);
+            font-size: 0.875rem;
+        }
+
+        .nav-item.active {
+            background: var(--peach);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .nav-item:hover {
+            background: var(--peach);
+            color: white;
+            transform: scale(1.15);
+        }
+
+        .nav-label {
+            position: absolute;
+            right: 3.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--ink);
+            color: var(--cream);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-item:hover .nav-label {
+            opacity: 1;
+        }
+
+        /* ==================== SCROLL PROGRESS ==================== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--peach), var(--forest));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* ==================== LOADING SCREEN ==================== */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--ink);
+            color: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            font-family: var(--font-mono);
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 2px;
+            background: var(--warm-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--peach);
+            width: 0;
+            animation: loadingFill 2s ease-in-out forwards;
+        }
+
+        @keyframes loadingFill {
+            to { width: 100%; }
+        }
+
+        .loading-complete {
+            margin-top: 1rem;
+            color: var(--peach);
+            opacity: 0;
+            animation: checkmarkAppear 0.3s ease forwards 2.3s;
+        }
+
+        @keyframes checkmarkAppear {
+            to { opacity: 1; }
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            min-height: 100vh;
+            padding: 4rem 6vw;
+            position: relative;
+        }
+
+        /* ==================== HERO SECTION WITH GRADIENT MESH ==================== */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: linear-gradient(135deg, var(--cream) 0%, #F4E4D7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gradient mesh overlay - NOT background */
+        .gradient-mesh {
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 155, 113, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(27, 77, 62, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(168, 181, 161, 0.2) 0%, transparent 60%);
+            animation: meshMove 20s ease-in-out infinite;
+        }
+
+        @keyframes meshMove {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .hero-particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--peach-glow);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            opacity: 0;
+            animation: heroFadeIn 1s ease forwards 0.5s;
+        }
+
+        @keyframes heroFadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero-greeting {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--warm-gray);
+            font-weight: 500;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--peach) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-label {
+            color: var(--warm-gray);
+            font-weight: 500;
+        }
+
+        .hero-rotating-text {
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--peach);
+            position: relative;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(135deg, var(--peach) 0%, #FF7A45 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            line-height: 1.8;
+            color: var(--warm-gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 1.125rem 2.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-btn.primary {
+            background: var(--ink);
+            color: var(--cream);
+        }
+
+        .hero-btn.primary:hover {
+            background: var(--peach);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 155, 113, 0.3);
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: var(--ink);
+            border: 2px solid var(--ink);
+        }
+
+        .hero-btn.secondary:hover {
+            background: var(--ink);
+            color: var(--cream);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.875rem;
+            color: var(--warm-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: scrollFade 1s ease forwards 2s;
+        }
+
+        @keyframes scrollFade {
+            to { opacity: 1; }
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-left: 2px solid var(--peach);
+            border-bottom: 2px solid var(--peach);
+            transform: rotate(-45deg);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: rotate(-45deg) translateY(0); }
+            40% { transform: rotate(-45deg) translateY(10px); }
+            60% { transform: rotate(-45deg) translateY(5px); }
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        #about {
+            background: var(--cream);
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--peach);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+
+        .section-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            opacity: 0;
+            transform: translateY(40px) rotate(-2deg);
+            transition: var(--transition-smooth);
+        }
+
+        .about-card.visible {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px) rotate(0deg);
+            box-shadow: 0 12px 40px rgba(255, 155, 113, 0.15);
+        }
+
+        .card-number {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--peach);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            color: var(--warm-gray);
+            line-height: 1.8;
+        }
+
+        .bio-content {
+            max-width: 900px;
+            font-size: 1.125rem;
+            line-height: 1.9;
+            color: var(--ink);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .bio-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight-text {
+            background: linear-gradient(to right, transparent 0%, var(--peach-fade) 0%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            padding: 0.1em 0.3em;
+            transition: background-size 0.8s ease;
+        }
+
+        .highlight-text.active {
+            background-size: 100% 100%;
+        }
+
+        .writing-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .type-tag {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: white;
+            border: 2px solid var(--sage);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            cursor: none;
+        }
+
+        .type-tag:hover {
+            border-color: var(--peach);
+            background: var(--peach);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* ==================== TOP CONTENT SECTION ==================== */
+        #top-content {
+            background: #F4E4D7;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: rotate(-1deg);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            position: relative;
+        }
+
+        .content-card.visible {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .content-card:hover {
+            transform: translateY(-12px) rotate(0deg);
+            box-shadow: 0 20px 40px rgba(255, 155, 113, 0.2);
+        }
+
+        .content-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .content-card:hover .content-image {
+            transform: scale(1.08);
+        }
+
+        .content-body {
+            padding: 1.5rem;
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--peach);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .content-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .content-category {
+            color: var(--peach);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .content-link:hover {
+            color: var(--peach);
+            transform: translateX(5px);
+        }
+
+        /* ==================== PORTFOLIO SECTION ==================== */
+        #portfolio {
+            background: var(--cream);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.75rem;
+            background: white;
+            border: 2px solid var(--sage);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: none;
+            transition: var(--transition-smooth);
+            font-size: 0.9375rem;
+            color: var(--ink);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--peach);
+            background: var(--peach);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--sage);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-card:hover {
+            border-left-color: var(--peach);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(255, 155, 113, 0.15);
+        }
+
+        .portfolio-card.hidden {
+            display: none;
+        }
+
+        .portfolio-category-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--peach-fade);
+            color: var(--peach);
+            border-radius: 50px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-card-title {
+            font-family: var(--font-display);
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            color: var(--ink);
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .portfolio-link:hover {
+            color: var(--peach);
+            transform: translateX(5px);
+        }
+
+        .load-more-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .load-more-btn {
+            padding: 1rem 2.5rem;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: none;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .load-more-btn:hover {
+            background: var(--peach);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 155, 113, 0.3);
+        }
+
+        .load-more-btn.hidden {
+            display: none;
+        }
+
+        /* ==================== IMPACT SECTION ==================== */
+        #impact {
+            background: var(--forest);
+            color: var(--cream);
+            min-height: 80vh;
+            padding: 5rem 6vw;
+        }
+
+        #impact .section-title {
+            color: var(--cream);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: var(--transition-bounce);
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--peach);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--cream);
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
+        #contact {
+            background: linear-gradient(135deg, #F4E4D7 0%, var(--cream) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        .contact-title .highlight {
+            color: var(--peach);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--sage);
+            font-family: var(--font-body);
+            font-size: 1.125rem;
+            color: var(--ink);
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-bottom-color: var(--peach);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            color: var(--warm-gray);
+            transition: var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label,
+        .form-textarea:focus + .form-label,
+        .form-textarea:not(:placeholder-shown) + .form-label {
+            top: -1.5rem;
+            font-size: 0.875rem;
+            color: var(--peach);
+        }
+
+        .submit-btn {
+            align-self: flex-start;
+            padding: 1.25rem 3rem;
+            background: var(--ink);
+            color: var(--cream);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: none;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--peach);
+            transition: left 0.4s ease;
+            z-index: 0;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 155, 113, 0.3);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            color: var(--ink);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-size: 1.25rem;
+        }
+
+        .social-link:hover {
+            background: var(--peach);
+            color: white;
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        /* ==================== IMPROVED FOOTER ==================== */
+        .minimal-footer {
+            padding: 4rem 6vw 2rem;
+            text-align: center;
+            background: var(--cream);
+            border-top: 2px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+
+        .footer-tagline {
+            color: var(--warm-gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--peach);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-link:hover {
+            color: var(--peach);
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--peach);
+            margin: 2rem auto;
+        }
+
+        .footer-love {
+            font-size: 0.9375rem;
+            color: var(--warm-gray);
+            margin-top: 2rem;
+            line-height: 1.8;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: var(--warm-gray);
+            margin-top: 1rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            section {
+                padding: 3rem 4vw;
+            }
+
+            .floating-nav {
+                right: 1rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor,
+            .cursor-trail {
+                display: none;
+            }
+
+            .floating-nav {
+                display: none;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            section {
+                padding: 2rem 5vw;
+                min-height: auto;
+            }
+
+            #impact {
+                padding: 3rem 5vw;
+                min-height: auto;
+            }
+
+            .content-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .portfolio-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* ==================== UTILITY CLASSES ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-text">&gt; Your content strategist is booting up...</div>
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+        <div class="loading-complete">Ready. ✓</div>
+    </div>
+    
+    <!-- Floating Navigation with Icons -->
+    <nav class="floating-nav">
+        <div class="nav-item active" data-section="hero">
+            <i class="fas fa-home"></i>
+            <div class="nav-label">Home</div>
+        </div>
+        <div class="nav-item" data-section="about">
+            <i class="fas fa-user"></i>
+            <div class="nav-label">About</div>
+        </div>
+        <div class="nav-item" data-section="top-content">
+            <i class="fas fa-star"></i>
+            <div class="nav-label">Top Content</div>
+        </div>
+        <div class="nav-item" data-section="portfolio">
+            <i class="fas fa-briefcase"></i>
+            <div class="nav-label">Portfolio</div>
+        </div>
+        <div class="nav-item" data-section="impact">
+            <i class="fas fa-chart-line"></i>
+            <div class="nav-label">Impact</div>
+        </div>
+        <div class="nav-item" data-section="contact">
+            <i class="fas fa-envelope"></i>
+            <div class="nav-label">Contact</div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section with Gradient Mesh -->
+        <section id="hero">
+            <div class="gradient-mesh"></div>
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-content">
+                <div class="hero-greeting"><span class="twemoji">👋</span> Hi, I'm</div>
+                <h1 class="hero-name">Dr. Hamna</h1>
+                <div class="hero-title-container">
+                    <span class="hero-label">I craft</span>
+                    <span class="hero-rotating-text" id="rotatingText">SEO Content</span>
+                </div>
+                <p class="hero-subtitle">
+                    Content strategist with 3+ years turning words into rankings, traffic into conversions, and brands into authorities. Let's create something that actually performs.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#portfolio" class="hero-btn primary"><i class="fas fa-briefcase"></i> View My Work</a>
+                    <a href="#contact" class="hero-btn secondary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-label fade-in">About Me</div>
+            <h2 class="section-title fade-in">Curious to Know About Me?</h2>
+            
+            <div class="about-grid">
+                <div class="about-card fade-in" style="transition-delay: 0.1s">
+                    <div class="card-number">3+</div>
+                    <h3 class="card-title">Years Experience</h3>
+                    <p class="card-text">Specializing in healthcare, packaging, beauty, and business services content</p>
+                </div>
+                <div class="about-card fade-in" style="transition-delay: 0.2s">
+                    <div class="card-number">10+</div>
+                    <h3 class="card-title">Industries</h3>
+                    <p class="card-text">From automobiles to healthcare, creating versatile content across niches</p>
+                </div>
+                <div class="about-card fade-in" style="transition-delay: 0.3s">
+                    <div class="card-number">Top</div>
+                    <h3 class="card-title">SERP Rankings</h3>
+                    <p class="card-text">Driving traffic and visibility through strategic SEO content</p>
+                </div>
+            </div>
+            
+            <div class="bio-content fade-in">
+                <p>
+                    Hi there! I'm a passionate content writer with over three years of experience, specializing in a wide range of niches. My <span class="highlight-text">background in healthcare</span> gives me a unique edge, allowing me to create content that's both informative and engaging.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    I'm skilled in <span class="highlight-text">SEO and content strategy</span>, ensuring my work not only captivates readers but ranks highly on search engine results pages. My love for storytelling and attention to detail have helped numerous brands boost their online presence and achieve their marketing goals.
+                </p>
+                
+                <div class="writing-types">
+                    <span class="type-tag">Blogs</span>
+                    <span class="type-tag">Articles</span>
+                    <span class="type-tag">Website Content</span>
+                    <span class="type-tag">Product Descriptions</span>
+                    <span class="type-tag">Social Media</span>
+                    <span class="type-tag">eBooks</span>
+                    <span class="type-tag">Biographies</span>
+                    <span class="type-tag">Emails</span>
+                    <span class="type-tag">Ghostwriting</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Top Content Section -->
+        <section id="top-content">
+            <div class="section-label fade-in">Featured Work</div>
+            <h2 class="section-title fade-in">Top Performing Content</h2>
+            <p class="fade-in" style="max-width: 800px; font-size: 1.125rem; color: var(--warm-gray);">
+                Check out some of my top-performing content on SERP. These pieces have driven significant traffic and visibility for the brands I've worked with.
+            </p>
+            
+            <div class="content-grid" id="topContentGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <div class="section-label fade-in">Full Portfolio</div>
+            <h2 class="section-title fade-in">All My Work</h2>
+            <p class="fade-in" style="max-width: 800px; margin: 0 auto; font-size: 1.125rem; color: var(--warm-gray); text-align: center;">
+                Explore my diverse portfolio of SEO-driven content across multiple industries.
+            </p>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="Holiday">Holiday Campaigns</button>
+                <button class="filter-btn" data-filter="Marketing">Marketing</button>
+                <button class="filter-btn" data-filter="Product Guide">Product Guides</button>
+                <button class="filter-btn" data-filter="Case Study">Case Studies</button>
+                <button class="filter-btn" data-filter="Seasonal">Seasonal</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn" id="loadMoreBtn">
+                    <i class="fas fa-plus-circle"></i> Load More
+                </button>
+            </div>
+        </section>
+        
+        <!-- Impact Section -->
+        <section id="impact">
+            <div class="section-label fade-in">Impact</div>
+            <h2 class="section-title fade-in">The Numbers Speak</h2>
+            
+            <div class="impact-grid">
+                <div class="stat-item fade-in" style="transition-delay: 0.1s">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Pieces Written</div>
+                </div>
+                <div class="stat-item fade-in" style="transition-delay: 0.2s">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Brands Served</div>
+                </div>
+                <div class="stat-item fade-in" style="transition-delay: 0.3s">
+                    <div class="stat-number">Top 3</div>
+                    <div class="stat-label">Rankings Achieved</div>
+                </div>
+                <div class="stat-item fade-in" style="transition-delay: 0.4s">
+                    <div class="stat-number" data-count="10">0</div>
+                    <div class="stat-label">Industries</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-container">
+                <h2 class="contact-title">
+                    Let's Write Something<br/>That <span class="highlight">Ranks</span>
+                </h2>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
+                    <input type="hidden" name="access_key" value="4b0cb330-cc06-47e8-b250-fa340eda6de3">
+                    <!-- Optional but nice: sets email subject in your inbox -->
+                    <input type="hidden" name="subject" value="New message from Portfolio Contact Form">
+                    <!-- Honeypot (anti-spam). Keep empty & hidden via CSS -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="name" placeholder=" " required>
+                        <label class="form-label">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-input" placeholder=" " required>
+                        <label class="form-label">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-textarea" name="message" placeholder=" " required></textarea>
+                        <label class="form-label">Your Message</label>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span><i class="fas fa-paper-plane"></i> Send Message</span>
+                    </button>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/content-by-hamna/" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/yourprofile" target="_blank" class="social-link" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M19.76 13.745c-3.197 1.64-6.776-1.417-5.661-4.833 1.12-3.417 5.813-3.767 7.423-0.552 1.005 1.973 0.219 4.389-1.761 5.389zM15.469 0.76c3.291-1.197 7.057-1.135 9.875 1.313 0.593 0.489 1.063 1.115 1.364 1.828 0.281 0.916-1-0.095-1.172-0.224-0.891-0.609-1.853-1.099-2.869-1.464-5.552-1.697-10.803 1.396-14.047 6.208-1.323 2.12-2.333 4.423-3 6.833-0.063 0.297-0.156 0.584-0.281 0.86-0.145 0.271-0.068-0.735-0.068-0.765 0.12-1.005 0.313-2.005 0.573-2.985 1.505-5.244 4.839-9.609 9.625-11.609zM15.516 28.755v-11.687c0.333 0.036 0.645 0.052 0.979 0.052 1.516 0.005 3-0.412 4.297-1.193v12.823c0 1.1-0.204 1.907-0.699 2.439-0.495 0.541-1.197 0.839-1.932 0.812-0.724 0.027-1.421-0.271-1.907-0.812-0.489-0.537-0.744-1.349-0.744-2.433z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/dietcare_by_dr.hamna/" target="_blank" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:hamnatahir246@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Improved Footer -->
+    <footer class="minimal-footer">
+        <div class="footer-content">
+            <!-- <h3 class="footer-brand">Dr. Hamna</h3>
+            <p class="footer-tagline">Expert SEO Content Writer</p> -->
+            
+            <div class="footer-links">
+                <a href="#about" class="footer-link">About</a>
+                <a href="#top-content" class="footer-link">Featured Work</a>
+                <a href="#portfolio" class="footer-link">Portfolio</a>
+                <a href="#contact" class="footer-link">Contact</a>
+                <a href="#hero" class="footer-link"><i class="fas fa-arrow-up"></i> Back to Top</a>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <p class="footer-love">
+                Crafted with <span class="twemoji">❤️</span> and coffee <span class="twemoji">☕</span>
+            </p>
+            <!-- <p class="footer-copyright">
+                &copy; 2025 Dr. Hamna. All rights reserved.
+            </p> -->
+        </div>
+    </footer>
+    
+    <script>
+        // Parse emojis with proper sizing
+        if (typeof twemoji !== 'undefined') {
+            twemoji.parse(document.body, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+        }
+
+        // ==================== DATA ====================
+        const topContent = [
+            {
+                id: 1,
+                title: "How Do Custom Preroll Boxes Boost Sales?",
+                url: "https://boxlark.com/custom-pre-roll-boxes-boost-sales/",
+                category: "Case Study",
+                rank: "Position 3",
+                image: "./images/1.png"
+            },
+            {
+                id: 2,
+                title: "Order Custom Vape Battery Boxes - Boxlark",
+                url: "https://boxlark.com/diving-deep-the-5-ps-of-marketing-and-their-impact-on-todays-business/",
+                category: "Product Guide",
+                rank: "Top 10",
+                image: "./images/2.png"
+            },
+            {
+                id: 3,
+                title: "Order Custom Blunt Boxes - Smoke Shop Products",
+                url: "https://boxlark.com/how-packaging-colors-influence-what-we-buy-exploring-consumer-perceptions-and-choices/",
+                category: "Product Guide",
+                rank: "Position 5",
+                image: "./images/3.png"
+            },
+            {
+                id: 4,
+                title: "Get Custom Invitation Boxes - Boxlark",
+                url: "https://boxlark.com/10-creative-ways-to-use-custom-cellophane-bags/",
+                category: "Product Guide",
+                rank: "Top 5",
+                image: "./images/4.png"
+            },
+            {
+                id: 5,
+                title: "Custom Happy Meal Boxes to Appeal to Kids and Youth",
+                url: "https://boxlark.com/5-easy-steps-of-boxlarks-christmas-packaging-for-kids/",
+                category: "Product Guide",
+                rank: "Position 2",
+                image: "./images/5.png"
+            },
+            {
+                id: 6,
+                title: "Buy Custom Suitcase Boxes - Order Unique Designs",
+                url: "https://boxlark.com/discover-perfect-thanksgiving-packaging-2024/",
+                category: "Product Guide",
+                rank: "Top 10",
+                image: "./images/6.png"
+            }
+        ];
+
+        const portfolio = [
+            {
+                title: "How Do Custom Preroll Boxes Boost Sales? 5 Success Stories",
+                url: "https://boxlark.com/custom-pre-roll-boxes-boost-sales/",
+                category: "Case Study"
+            },
+            {
+                title: "Diving Deep: The 5 Ps of Marketing and Their Impact on Today's Business",
+                url: "https://boxlark.com/diving-deep-the-5-ps-of-marketing-and-their-impact-on-todays-business/",
+                category: "Marketing"
+            },
+            {
+                title: "How Packaging Colors Influence What We Buy",
+                url: "https://boxlark.com/how-packaging-colors-influence-what-we-buy-exploring-consumer-perceptions-and-choices/",
+                category: "Marketing"
+            },
+            {
+                title: "10 Creative Ways to Use Custom Cellophane Bags for Special Occasions",
+                url: "https://boxlark.com/10-creative-ways-to-use-custom-cellophane-bags/",
+                category: "Product Guide"
+            },
+            {
+                title: "Magical Christmas Packaging for Kids: 5 Easy and Affordable Steps",
+                url: "https://boxlark.com/5-easy-steps-of-boxlarks-christmas-packaging-for-kids/",
+                category: "Holiday"
+            },
+            {
+                title: "How Many Cigarettes Are in a Pack? A Simple Guide for Brand Owners",
+                url: "https://boxlark.com/how-many-cigarettes-are-in-a-pack-a-simple-guide-for-brand-owners/",
+                category: "Product Guide"
+            },
+            {
+                title: "Discover Perfect Thanksgiving Packaging Tips & Trends",
+                url: "https://boxlark.com/discover-perfect-thanksgiving-packaging-2024/",
+                category: "Seasonal"
+            },
+            {
+                title: "12 Creative Halloween Gift Packaging Ideas for All Ages",
+                url: "https://boxlark.com/12-creative-halloween-gift-packaging-ideas/",
+                category: "Holiday"
+            },
+            {
+                title: "Love at First Sight: Eye-Catching Valentine's Day Packaging Ideas",
+                url: "https://boxlark.com/love-at-first-sight-eye-catching-valentines-day-packaging-ideas-for-retailers/",
+                category: "Seasonal"
+            },
+            {
+                title: "Next-Gen Custom Food Boxes and Their Uses in Food Packaging Industries",
+                url: "https://boxlark.com/custom-food-boxes-and-their-uses-in-food-packaging-industries/",
+                category: "Product Guide"
+            },
+            {
+                title: "The Art of Business Packaging: Maximizing Impact with Packaging Boxes",
+                url: "https://boxlark.com/blog/",
+                category: "Marketing"
+            },
+            {
+                title: "Creepy and Crafty: Custom Packaging Boxes for Halloween Thrills",
+                url: "https://boxlark.com/blog/",
+                category: "Holiday"
+            },
+            {
+                title: "Impress Your Customers with Affordable Customization on Custom Soap Boxes",
+                url: "https://boxlark.com/blog/",
+                category: "Product Guide"
+            },
+            {
+                title: "Upgrade Your Boxes to Custom Bakery Boxes: The Baking Business Booster",
+                url: "https://boxlark.com/blog/",
+                category: "Product Guide"
+            },
+            {
+                title: "Before You Buy: Custom Beard Oil Box Considerations",
+                url: "https://boxlark.com/blog/",
+                category: "Product Guide"
+            },
+            {
+                title: "Discover 10 Sustainable Beauty Packaging Solutions for Eco-Friendly Glamour",
+                url: "https://boxlark.com/blog/",
+                category: "Product Guide"
+            },
+            {
+                title: "8 Reasons Why Custom Christmas Boxes are the Secret to a Memorable Holiday",
+                url: "https://boxlark.com/blog/",
+                category: "Holiday"
+            },
+            {
+                title: "Make a Lasting Impression: The Power of Cosmetic Packaging for Makeup Brands",
+                url: "https://boxlark.com/blog/",
+                category: "Marketing"
+            },
+            {
+                title: "Black Mailer Boxes: Packaging Revolution for E-Commerce Businesses",
+                url: "https://boxlark.com/blog/",
+                category: "Product Guide"
+            },
+            {
+                title: "Is Your CBD Packaging Killing Your Sales? Here's How to Fix It",
+                url: "https://boxlark.com/blog/",
+                category: "Case Study"
+            }
+        ];
+
+        // ==================== LOADING SCREEN ====================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').classList.add('hidden');
+                setTimeout(() => {
+                    document.querySelector('.loading-screen').style.display = 'none';
+                    initHero();
+                }, 500);
+            }, 2800);
+        });
+
+        // ==================== HERO ANIMATIONS ====================
+        function initHero() {
+            // Create floating particles
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+
+            // Rotating text
+            const rotatingWords = ['SEO Content', 'Blog Articles', 'Product Descriptions', 'Brand Stories', 'Content Strategy'];
+            let currentIndex = 0;
+            const rotatingText = document.getElementById('rotatingText');
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % rotatingWords.length;
+                rotatingText.style.opacity = '0';
+                setTimeout(() => {
+                    rotatingText.textContent = rotatingWords[currentIndex];
+                    rotatingText.style.opacity = '1';
+                }, 300);
+            }, 2000);
+        }
+
+        // ==================== CUSTOM CURSOR ====================
+        const cursor = document.querySelector('.custom-cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            if (Math.random() > 0.8) {
+                createTrail(e.clientX, e.clientY);
+            }
+        });
+
+        function animateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            
+            cursorX += dx * 0.15;
+            cursorY += dy * 0.15;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => trail.remove(), 500);
+        }
+
+        document.querySelectorAll('a, button, .type-tag, .nav-item, .filter-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // ==================== POPULATE CONTENT ====================
+        function populateTopContent() {
+            const grid = document.getElementById('topContentGrid');
+            
+            topContent.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'content-card';
+                card.style.transitionDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="content-image">
+                    <div class="rank-badge">${item.rank}</div>
+                    <div class="content-body">
+                        <div class="content-category">${item.category}</div>
+                        <h3 class="content-title">${item.title}</h3>
+                        <a href="${item.url}" target="_blank" class="content-link">
+                            <i class="fas fa-external-link-alt"></i> Read Article
+                        </a>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // ==================== PORTFOLIO WITH LOAD MORE ====================
+        let portfolioItemsToShow = 6;
+        const portfolioIncrement = 6;
+
+        function populatePortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            
+            const itemsToDisplay = portfolio.slice(0, portfolioItemsToShow);
+            
+            itemsToDisplay.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                card.setAttribute('data-category', item.category);
+                card.style.transitionDelay = `${index * 0.05}s`;
+                
+                card.innerHTML = `
+                    <div class="portfolio-category-tag">${item.category}</div>
+                    <h3 class="portfolio-card-title">${item.title}</h3>
+                    <a href="${item.url}" target="_blank" class="portfolio-link">
+                        <i class="fas fa-link"></i> View Article
+                    </a>
+                `;
+                
+                grid.appendChild(card);
+            });
+
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (portfolioItemsToShow >= portfolio.length) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
+            }
+
+            setTimeout(() => {
+                document.querySelectorAll('.portfolio-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }, 100);
+        }
+
+        document.getElementById('loadMoreBtn').addEventListener('click', () => {
+            portfolioItemsToShow += portfolioIncrement;
+            populatePortfolio();
+        });
+
+        // ==================== PORTFOLIO FILTERS ====================
+        function initPortfolioFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const cards = document.querySelectorAll('.portfolio-card');
+                    cards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        
+                        if (filter === 'all' || category === filter) {
+                            card.classList.remove('hidden');
+                            setTimeout(() => card.classList.add('visible'), 50);
+                        } else {
+                            card.classList.add('hidden');
+                            card.classList.remove('visible');
+                        }
+                    });
+                });
+            });
+        }
+
+        populateTopContent();
+        populatePortfolio();
+        initPortfolioFilters();
+
+        // ==================== SCROLL ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    if (entry.target.classList.contains('stat-item')) {
+                        const number = entry.target.querySelector('.stat-number');
+                        const target = parseInt(number.getAttribute('data-count'));
+                        if (target) animateCounter(number, target);
+                    }
+                    
+                    if (entry.target.classList.contains('bio-content')) {
+                        setTimeout(() => {
+                            document.querySelectorAll('.highlight-text').forEach((el, i) => {
+                                setTimeout(() => el.classList.add('active'), i * 300);
+                            });
+                        }, 300);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .about-card, .content-card, .portfolio-card, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ==================== COUNTER ANIMATION ====================
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 30);
+        }
+
+        // ==================== NAVIGATION ====================
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.getAttribute('data-section');
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === current) {
+                    item.classList.add('active');
+                }
+            });
+            
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.pageYOffset / scrollHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // ==================== FORM HANDLING ====================
+        // document.getElementById('contactForm').addEventListener('submit', (e) => {
+        //     e.preventDefault();
+            
+        //     const btn = e.target.querySelector('.submit-btn');
+        //     const originalText = btn.innerHTML;
+            
+        //     btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Sending...</span>';
+        //     btn.style.pointerEvents = 'none';
+            
+        //     setTimeout(() => {
+        //         btn.innerHTML = '<span><i class="fas fa-check"></i> Message Sent!</span>';
+        //         setTimeout(() => {
+        //             btn.innerHTML = originalText;
+        //             btn.style.pointerEvents = 'auto';
+        //             e.target.reset();
+        //         }, 2000);
+        //     }, 1500);
+        // });
+
+        const form = document.getElementById('contactForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn = form.querySelector('.submit-btn');
+    const originalHTML = btn.innerHTML;
+
+    // UI: show loading state
+    btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Sending...</span>';
+    btn.disabled = true;
+
+    try {
+      // Build payload from the form
+      const formData = new FormData(form);
+
+      // Send to Web3Forms
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' } // important for JSON response
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Success UI
+        btn.innerHTML = '<span><i class="fas fa-check"></i> Message Sent!</span>';
+        form.reset();
+      } else {
+        // API returned an error (e.g., invalid key)
+        console.error('Web3Forms error:', data);
+        btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
+      }
+    } catch (err) {
+      // Network or unexpected error
+      console.error('Network error:', err);
+      btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
+    } finally {
+      // Restore button after a short delay
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      }, 1800);
+    }
+  });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
