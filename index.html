@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Dr. Hamna - Expert SEO Content Writer</title>
     
     <!-- Fonts -->
@@ -46,6 +46,7 @@
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
+            font-size: 16px;
         }
 
         body {
@@ -70,42 +71,125 @@
             vertical-align: -0.2em;
         }
 
-        /* ==================== CUSTOM CURSOR ==================== */
+        /* ==================== IMPROVED CUSTOM CURSOR ==================== */
         .custom-cursor {
             position: fixed;
-            width: 8px;
-            height: 8px;
+            width: 20px;
+            height: 20px;
             background: var(--peach);
             border-radius: 50%;
             pointer-events: none;
             z-index: 10000;
-            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
             mix-blend-mode: difference;
         }
 
         .custom-cursor.hover {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: transparent;
             border: 2px solid var(--peach);
         }
 
-        .cursor-trail {
+        /* ==================== MOBILE MENU ==================== */
+        .mobile-menu-toggle {
             position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--peach-glow);
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            animation: fadeTrail 0.5s ease-out forwards;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            cursor: pointer;
+            border: 2px solid rgba(0,0,0,0.1);
+            transition: var(--transition-smooth);
         }
 
-        @keyframes fadeTrail {
-            to {
-                opacity: 0;
-                transform: scale(2);
-            }
+        .mobile-menu-toggle:hover {
+            background: var(--peach);
+            border-color: var(--peach);
+        }
+
+        .mobile-menu-toggle:hover .hamburger span {
+            background: white;
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 18px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--ink);
+            transition: var(--transition-smooth);
+            transform-origin: center;
+        }
+
+        .mobile-menu-toggle.active .hamburger span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active .hamburger span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 6rem 2rem 2rem;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+            text-decoration: none;
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .mobile-nav-item:hover,
+        .mobile-nav-item.active {
+            background: var(--peach);
+            color: white;
+        }
+
+        .mobile-nav-item i {
+            width: 24px;
+            font-size: 1.125rem;
         }
 
         /* ==================== FLOATING NAVIGATION WITH GLASSMORPHISM ==================== */
@@ -119,7 +203,7 @@
             flex-direction: column;
             gap: 1rem;
             opacity: 0;
-            animation: navFadeIn 0.6s ease forwards 3s;
+            animation: navFadeIn 0.6s ease forwards 1.2s;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -192,7 +276,7 @@
             transition: width 0.1s ease;
         }
 
-        /* ==================== LOADING SCREEN ==================== */
+        /* ==================== LOADING SCREEN - FIXED 1 SECOND ==================== */
         .loading-screen {
             position: fixed;
             inset: 0;
@@ -202,52 +286,38 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 10001;
+            z-index: 10002;
             font-family: var(--font-mono);
-            transition: opacity 0.5s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .loading-screen.hidden {
             opacity: 0;
-            pointer-events: none;
+            visibility: hidden;
         }
 
         .loading-text {
             font-size: 1rem;
             margin-bottom: 2rem;
+            animation: pulse 1s ease-in-out infinite;
         }
 
-        .loading-bar {
-            width: 300px;
-            height: 2px;
-            background: var(--warm-gray);
-            position: relative;
-            overflow: hidden;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
-        .loading-bar-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: var(--peach);
-            width: 0;
-            animation: loadingFill 2s ease-in-out forwards;
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--warm-gray);
+            border-top-color: var(--peach);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        @keyframes loadingFill {
-            to { width: 100%; }
-        }
-
-        .loading-complete {
-            margin-top: 1rem;
-            color: var(--peach);
-            opacity: 0;
-            animation: checkmarkAppear 0.3s ease forwards 2.3s;
-        }
-
-        @keyframes checkmarkAppear {
-            to { opacity: 1; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ==================== SECTIONS ==================== */
@@ -331,7 +401,7 @@
             max-width: 900px;
             z-index: 2;
             opacity: 0;
-            animation: heroFadeIn 1s ease forwards 0.5s;
+            animation: heroFadeIn 0.8s ease forwards 0.3s;
         }
 
         @keyframes heroFadeIn {
@@ -339,7 +409,7 @@
         }
 
         .hero-greeting {
-            font-size: 1.75rem;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             margin-bottom: 1rem;
             color: var(--warm-gray);
             font-weight: 500;
@@ -347,9 +417,9 @@
 
         .hero-name {
             font-family: var(--font-display);
-            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-size: clamp(2.75rem, 8vw, 6rem);
             font-weight: 900;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--ink) 0%, var(--peach) 100%);
             -webkit-background-clip: text;
@@ -363,7 +433,7 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            font-size: clamp(1.75rem, 4vw, 3rem);
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
@@ -386,11 +456,14 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-size: clamp(1rem, 2vw, 1.25rem);
             line-height: 1.8;
             color: var(--warm-gray);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-cta-group {
@@ -401,11 +474,11 @@
         }
 
         .hero-btn {
-            padding: 1.125rem 2.75rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.125rem;
+            font-size: 1rem;
             transition: var(--transition-smooth);
             display: inline-flex;
             align-items: center;
@@ -447,7 +520,7 @@
             align-items: center;
             gap: 0.5rem;
             opacity: 0;
-            animation: scrollFade 1s ease forwards 2s;
+            animation: scrollFade 0.8s ease forwards 1.5s;
         }
 
         @keyframes scrollFade {
@@ -493,7 +566,7 @@
 
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 900;
             margin-bottom: 3rem;
             line-height: 1.2;
@@ -509,7 +582,7 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
@@ -615,7 +688,7 @@
 
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -743,7 +816,7 @@
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
@@ -856,7 +929,7 @@
 
         .impact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 3rem;
             margin-top: 4rem;
         }
@@ -875,7 +948,7 @@
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 900;
             color: var(--peach);
             line-height: 1;
@@ -904,7 +977,7 @@
 
         .contact-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-size: clamp(2rem, 4vw, 4rem);
             font-weight: 900;
             margin-bottom: 3rem;
             line-height: 1.2;
@@ -1137,12 +1210,15 @@
         }
 
         @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+
             body {
                 cursor: auto;
             }
 
-            .custom-cursor,
-            .cursor-trail {
+            .custom-cursor {
                 display: none;
             }
 
@@ -1150,18 +1226,26 @@
                 display: none;
             }
 
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
             .scroll-indicator {
                 display: none;
             }
 
             section {
-                padding: 2rem 5vw;
+                padding: 2.5rem 5vw;
                 min-height: auto;
             }
 
             #impact {
                 padding: 3rem 5vw;
                 min-height: auto;
+            }
+
+            .hero-name {
+                font-size: clamp(2.25rem, 10vw, 4rem);
             }
 
             .content-grid,
@@ -1184,12 +1268,19 @@
 
             .hero-cta-group {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .portfolio-filters {
                 justify-content: flex-start;
                 overflow-x: auto;
                 flex-wrap: nowrap;
+                padding-bottom: 0.5rem;
             }
 
             .filter-btn {
@@ -1199,6 +1290,21 @@
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mobile-menu-toggle {
+                top: 1.5rem;
+                right: 1.5rem;
             }
         }
 
@@ -1216,22 +1322,56 @@
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- Custom Cursor (Desktop only) -->
     <div class="custom-cursor"></div>
     
     <!-- Scroll Progress -->
     <div class="scroll-progress"></div>
     
-    <!-- Loading Screen -->
+    <!-- Loading Screen - Fixed 1 Second -->
     <div class="loading-screen">
-        <div class="loading-text">&gt; Your content strategist is booting up...</div>
-        <div class="loading-bar">
-            <div class="loading-bar-fill"></div>
-        </div>
-        <div class="loading-complete">Ready. ✓</div>
+        <div class="loading-text">Loading your content strategist...</div>
+        <div class="loading-spinner"></div>
     </div>
     
-    <!-- Floating Navigation with Icons -->
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-toggle">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#hero" class="mobile-nav-item active" data-section="hero">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#about" class="mobile-nav-item" data-section="about">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+        <a href="#top-content" class="mobile-nav-item" data-section="top-content">
+            <i class="fas fa-star"></i>
+            <span>Top Content</span>
+        </a>
+        <a href="#portfolio" class="mobile-nav-item" data-section="portfolio">
+            <i class="fas fa-briefcase"></i>
+            <span>Portfolio</span>
+        </a>
+        <a href="#impact" class="mobile-nav-item" data-section="impact">
+            <i class="fas fa-chart-line"></i>
+            <span>Impact</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item" data-section="contact">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
+    
+    <!-- Floating Navigation (Desktop) -->
     <nav class="floating-nav">
         <div class="nav-item active" data-section="hero">
             <i class="fas fa-home"></i>
@@ -1406,9 +1546,7 @@
                 
                 <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="contactForm">
                     <input type="hidden" name="access_key" value="944c96fd-0e29-439c-b539-90b13415f3d9">
-                    <!-- Optional but nice: sets email subject in your inbox -->
                     <input type="hidden" name="subject" value="New message from Portfolio Contact Form">
-                    <!-- Honeypot (anti-spam). Keep empty & hidden via CSS -->
                     <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
 
                     <div class="form-group">
@@ -1451,9 +1589,6 @@
     <!-- Improved Footer -->
     <footer class="minimal-footer">
         <div class="footer-content">
-            <!-- <h3 class="footer-brand">Dr. Hamna</h3>
-            <p class="footer-tagline">Expert SEO Content Writer</p> -->
-            
             <div class="footer-links">
                 <a href="#about" class="footer-link">About</a>
                 <a href="#top-content" class="footer-link">Featured Work</a>
@@ -1467,9 +1602,6 @@
             <p class="footer-love">
                 Crafted with <span class="twemoji">❤️</span> and coffee <span class="twemoji">☕</span>
             </p>
-            <!-- <p class="footer-copyright">
-                &copy; 2025 Dr. Hamna. All rights reserved.
-            </p> -->
         </div>
     </footer>
     
@@ -1637,15 +1769,12 @@
             }
         ];
 
-        // ==================== LOADING SCREEN ====================
-        window.addEventListener('load', () => {
+        // ==================== LOADING SCREEN - EXACTLY 1 SECOND ====================
+        window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.querySelector('.loading-screen').classList.add('hidden');
-                setTimeout(() => {
-                    document.querySelector('.loading-screen').style.display = 'none';
-                    initHero();
-                }, 200);
-            }, 1000);
+                initHero();
+            }, 1000); // Exactly 1 second
         });
 
         // ==================== HERO ANIMATIONS ====================
@@ -1676,49 +1805,41 @@
             }, 2000);
         }
 
-        // ==================== CUSTOM CURSOR ====================
+        // ==================== IMPROVED CUSTOM CURSOR - FASTER & SMOOTHER ====================
         const cursor = document.querySelector('.custom-cursor');
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-
+        
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            if (Math.random() > 0.8) {
-                createTrail(e.clientX, e.clientY);
-            }
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
-        function animateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.15;
-            cursorY += dy * 0.15;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        function createTrail(x, y) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-            
-            setTimeout(() => trail.remove(), 500);
-        }
-
-        document.querySelectorAll('a, button, .type-tag, .nav-item, .filter-btn').forEach(el => {
+        document.querySelectorAll('a, button, .type-tag, .nav-item, .filter-btn, .mobile-nav-item').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // ==================== MOBILE MENU ====================
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                
+                const targetId = item.getAttribute('data-section');
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+
+                mobileNavItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
         });
 
         // ==================== POPULATE CONTENT ====================
@@ -1898,6 +2019,14 @@
                     item.classList.add('active');
                 }
             });
+
+            // Update mobile nav
+            mobileNavItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === current) {
+                    item.classList.add('active');
+                }
+            });
             
             const scrollProgress = document.querySelector('.scroll-progress');
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1906,71 +2035,44 @@
         });
 
         // ==================== FORM HANDLING ====================
-        // document.getElementById('contactForm').addEventListener('submit', (e) => {
-        //     e.preventDefault();
-            
-        //     const btn = e.target.querySelector('.submit-btn');
-        //     const originalText = btn.innerHTML;
-            
-        //     btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Sending...</span>';
-        //     btn.style.pointerEvents = 'none';
-            
-        //     setTimeout(() => {
-        //         btn.innerHTML = '<span><i class="fas fa-check"></i> Message Sent!</span>';
-        //         setTimeout(() => {
-        //             btn.innerHTML = originalText;
-        //             btn.style.pointerEvents = 'auto';
-        //             e.target.reset();
-        //         }, 2000);
-        //     }, 1500);
-        // });
-
         const form = document.getElementById('contactForm');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    const btn = form.querySelector('.submit-btn');
-    const originalHTML = btn.innerHTML;
+            const btn = form.querySelector('.submit-btn');
+            const originalHTML = btn.innerHTML;
 
-    // UI: show loading state
-    btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Sending...</span>';
-    btn.disabled = true;
+            btn.innerHTML = '<span><i class="fas fa-spinner fa-spin"></i> Sending...</span>';
+            btn.disabled = true;
 
-    try {
-      // Build payload from the form
-      const formData = new FormData(form);
+            try {
+                const formData = new FormData(form);
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
 
-      // Send to Web3Forms
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' } // important for JSON response
-      });
+                const data = await res.json();
 
-      const data = await res.json();
-
-      if (res.ok) {
-        // Success UI
-        btn.innerHTML = '<span><i class="fas fa-check"></i> Message Sent!</span>';
-        form.reset();
-      } else {
-        // API returned an error (e.g., invalid key)
-        console.error('Web3Forms error:', data);
-        btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
-      }
-    } catch (err) {
-      // Network or unexpected error
-      console.error('Network error:', err);
-      btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
-    } finally {
-      // Restore button after a short delay
-      setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.disabled = false;
-      }, 1800);
-    }
-  });
+                if (res.ok) {
+                    btn.innerHTML = '<span><i class="fas fa-check"></i> Message Sent!</span>';
+                    form.reset();
+                } else {
+                    console.error('Web3Forms error:', data);
+                    btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
+                }
+            } catch (err) {
+                console.error('Network error:', err);
+                btn.innerHTML = '<span><i class="fas fa-triangle-exclamation"></i> Failed. Try again</span>';
+            } finally {
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                }, 1800);
+            }
+        });
 
         // ==================== SMOOTH SCROLL ====================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
